@@ -13,11 +13,12 @@ def rlookup(env, ec2_name):
     # Find an instance that matches the name.
     output = []
     for i in instances:
-        if i.tags is not None:
-            for t in i.tags:
-                if t['Key'] == 'Name' and t['Value'] == ec2_name:
-                    print(f"Found server at {i.private_ip_address}")
-                    output.append(i.private_ip_address)
+        if i.tags:
+            if i.tags is not None:
+                for t in i.tags:
+                    if t['Key'] == 'Name' and t['Value'] == ec2_name:
+                        print(f"Found server at {i.private_ip_address}")
+                        output.append(i.private_ip_address)
     return output
 
 if __name__ == "__main__":
