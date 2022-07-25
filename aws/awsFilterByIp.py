@@ -7,13 +7,13 @@ import jmespath
 def jmesPath(response):
 # Using jmespath
     print("Result from jmespath")
-    instance_name = jmespath.search("Reservations[].Instances[].Tags[?Key =='Name'].Value | [0][0]", result)
+    instance_name = jmespath.search("Reservations[].Instances[].Tags[?Key =='Name'].Value | [0][0]", response)
     print(instance_name) 
 
 def loopQuery(response):
 #  Looping over returned results
   print("Result from for loop")
-  for r in result['Reservations']:
+  for r in response['Reservations']:
       for instance in r['Instances']:
           for tags in instance['Tags']:
               if tags['Key'] == 'Name':
