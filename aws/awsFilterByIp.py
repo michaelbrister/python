@@ -5,13 +5,19 @@ import boto3
 import jmespath
 
 def jmesPath(response):
-# Using jmespath
+"""
+Searches response using jmespath to query name tag
+:Param response: 
+"""
     print("Result from jmespath")
     instance_name = jmespath.search("Reservations[].Instances[].Tags[?Key =='Name'].Value | [0][0]", response)
     print(instance_name) 
 
 def loopQuery(response):
-#  Looping over returned results
+"""
+Looping over response searching for name tag
+:Param response: 
+"""
   print("Result from for loop")
   for r in response['Reservations']:
       for instance in r['Instances']:
