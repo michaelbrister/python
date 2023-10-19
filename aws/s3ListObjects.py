@@ -2,7 +2,10 @@
 import boto3
 
 def s3List(env, s3Bucket):
-    """Looks up an IP in the AWS tag list  based on the name passed."""
+    """Looks up an IP in the AWS tag list  based on the name passed.
+    :Param env: aws environment
+    :Param s3Bucket: name of the aws s3 bucket
+    """
     # Grab the key for the proper environment.
     session = boto3.Session(profile_name=env, region_name="us-east-1")
 
