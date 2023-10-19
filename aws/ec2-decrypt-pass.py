@@ -11,7 +11,9 @@ env = ''
 key_path = ''
 
 def decrypt_ec2_pass(instance):
-    # Get AWS credentials
+    """ Get AWS credentials
+    :Param instance: ec2 instance
+    """
     session = boto3.Session(profile_name=profile)
     credentials = session.get_credentials()
 
