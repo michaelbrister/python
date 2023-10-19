@@ -18,8 +18,10 @@ def backoff_hdlr(details):
 
 def getAccessKeys(session, userName):
     """ Returns number of access keys founce for IAM account.
-        session -- boto3 session.
-        username -- username in string format
+        :Param session: boto3 session.
+        :Param username: username in string format
+        :return: response
+        
     """
     iam = session.client('iam')
 
@@ -29,8 +31,8 @@ def getAccessKeys(session, userName):
 
 def verifyProfilesConfiguration(session, oldCredentials):
     """ Verifies aws profiles are found and can be read from 
-        session -- boto3 session.
-        oldCredentials -- dict 
+        :Param session: boto3 session.
+        :Param oldCredentials: dict with prior credentials
         credentials = {
             'AccessKeyId': aws_access_key,
             'SecretAccessKey': aws_secret_key,
@@ -51,8 +53,8 @@ def verifyProfilesConfiguration(session, oldCredentials):
 def createAccessKey(session, oldCredentials):
     """ Create new AWS IAM Access Key 
 
-        session -- boto3 session.
-        oldCredentials -- dict 
+        :Param session: boto3 session.
+        :Param oldCredentials: dict with old IAM credentials
         credentials = {
             'AccessKeyId': aws_access_key,
             'SecretAccessKey': aws_secret_key,
@@ -76,6 +78,7 @@ def createAccessKey(session, oldCredentials):
 def getProfiles(aws_credentials_file):
     """ Returns list of configured profiles 
         profiles without a aws_access_key_id configured will be ommited. 
+        :Param aws_credentials_file: file with aws credentials
     """
     config = configparser.ConfigParser()
     config.read(aws_credentials_file)
@@ -84,10 +87,10 @@ def getProfiles(aws_credentials_file):
 
 def updateCredentialsFile(profile, newCredentials, aws_credentials_file):
     """ Update ./aws/credentials with new access key 
-        profile -- string aws-profile name ( e.g. aws-sandbox )
-        newCredentials -- type dict of newly created AWS keys
-        aws_credentials_file -- string. Location of .aws/credentials file for user running the program.
-        session -- boto3 session.
+        :Param profile: string aws-profile name ( e.g. aws-sandbox )
+        :Param newCredentials: type dict of newly created AWS keys
+        :Param aws_credentials_file: string. Location of .aws/credentials file for user running the program.
+        :Param session: boto3 session.
 
         Credentials -- dict 
         credentials = {
@@ -113,8 +116,8 @@ def updateCredentialsFile(profile, newCredentials, aws_credentials_file):
                       max_time=30)    
 def deleteAccessKey(session, iamCredentials):
     """ Deletes old access key 
-        session -- boto3 session.
-        iamCredentials -- dict 
+        :Param session: boto3 session.
+        :Param iamCredentials: dict 
         iamCredentials = {
             'AccessKeyId': aws_access_key,
             'SecretAccessKey': aws_secret_key,
