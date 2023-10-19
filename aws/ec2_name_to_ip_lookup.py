@@ -2,7 +2,10 @@
 import boto3
 
 def rlookup(env, ec2_name):
-    """Looks up an IP in the AWS tag list  based on the name passed."""
+    """Looks up an IP in the AWS tag list  based on the name passed.
+    :Param env: AWS environment
+    :Param ec2_name: name of ec2 instance
+    """
     # Grab the key for the proper environment.
     session = boto3.Session(profile_name=env, region_name="us-east-1")
 
