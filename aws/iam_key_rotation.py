@@ -45,7 +45,7 @@ def verifyProfilesConfiguration(session, oldCredentials):
     # logging.debug(credentials.secret_key)
 
     if credentials.access_key is None:
-        raise Exception(f"Could not find keys for profile.")
+        raise Exception("Could not find keys for profile.")
     else:
         oldCredentials['AccessKeyId'] = credentials.access_key
         oldCredentials['SecretAccessKey'] = credentials.secret_key
@@ -182,7 +182,7 @@ def main():
         # if more than 1 key is found key loop is skipped.
         iamKeys = getAccessKeys(session, oldCredentials['UserName'])
 
-        if len(iamKeys['AccessKeyMetadata']) > 1 and args.force == False:
+        if len(iamKeys['AccessKeyMetadata']) > 1 and args.force is not False:
             logging.info (f"Multiple access keys found and force flag is not set, unable to rotate keys for profile {profile}.")
             exit()
 
