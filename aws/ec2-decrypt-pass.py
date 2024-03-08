@@ -10,13 +10,12 @@ region = ''
 env = ''
 key_path = ''
 
-def decrypt_ec2_pass(instance):
+def decrypt_ec2_pass(instance) -> str:
     """ Get AWS credentials
     :Param instance: ec2 instance
     """
     session = boto3.Session(profile_name=profile)
-    credentials = session.get_credentials()
-
+    
     ec2 = session.client('ec2', region_name=region)
     instance = ec2.get_password_data(InstanceId=instance)
 
